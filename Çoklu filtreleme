@@ -1,0 +1,19 @@
+Sub getValues()
+    Dim wb As Workbook
+    Dim sh As Worksheet
+    
+    Set wb = ActiveWorkbook
+    Set sh = wb.Sheets("Sayfa1") 'tablo eklemeyi unutma
+    
+    Dim isim, soyisim, babaisim As String
+    isim = InputBox("Ismini giriniz")
+    soyisim = InputBox("Soyismini giriniz")
+    babaisim = InputBox("Babasinin Ismini giriniz")
+    
+    sh.ListObjects(1).Range.AutoFilter 2, isim 'sütun numarasını düzeltmeyi unutma 
+    
+    sh.ListObjects(1).Range.AutoFilter 3, soyisim
+    sh.ListObjects(1).Range.AutoFilter 7, babaisim
+    
+    
+End Sub
