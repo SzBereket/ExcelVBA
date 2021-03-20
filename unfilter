@@ -1,0 +1,4 @@
+Sub unfilter()
+
+Rows("1:100000").EntireRow.Hidden = False
+End Sub
