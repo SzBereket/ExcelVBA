@@ -1,0 +1,1 @@
+sonsatir = cells(rows.Count,"A").End(xlUp).Row +1
