@@ -1,0 +1,7 @@
+Sub saat()
+Do
+Range("a1") = Format(Now(), "dd mm yyyy")
+Range("a2") = Format(Now(), "hh:mm:ss")
+DoEvents
+Loop
+End Sub
