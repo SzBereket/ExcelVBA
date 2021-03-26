@@ -1,0 +1,14 @@
+Private Sub CommandButton1_Click()
+Dim yol As String
+Dim klasor As String
+yol = "C:\Users\hardy\Desktop\mmb "
+
+For i = 1 To 10
+yol = "C:\Users\hardy\Desktop\mmb" & i
+    MkDir (yol)
+    Next i
+    
+
+
+
+End Sub
