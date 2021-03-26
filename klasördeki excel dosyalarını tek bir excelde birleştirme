@@ -1,0 +1,27 @@
+Private Sub CommandButton1_Click()
+Dim dosya As String
+Dim klasor_liste As String
+Dim kitap As Workbook
+
+With Application.FileDialog(msoFileDialogFolderPicker)
+.Title = "Birleştirilecek dosyaların olduğu klasörü seçin"
+.ButtonName = "Dosya Seç"
+
+If .Show = 0 Then
+Exit Sub
+Else
+dosya = .SelectedItems(1) & "\"
+End If
+
+klasor_liste = Dir(dosya & "*.xls*")
+Do Until klasor_liste = ""
+Set kitap = Workbooks.Open(dosya & klasor_liste)
+kitap.Sheets(1).Copy after:=ThisWorkbook.Sheets(1)
+kitap.Close
+klasor_liste = Dir
+Loop
+
+
+End With
+
+End Sub
