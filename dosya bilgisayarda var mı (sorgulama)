@@ -1,0 +1,10 @@
+Private Sub CommandButton1_Click()
+Dim dosyaismi As String
+dosyaismi = VBA.FileSystem.Dir("C:\Users\hardy\Desktop\szb.xlsx")
+If dosyaismi = vbNullString Then
+MsgBox "dosya yok"
+Else
+Workbooks.Open ("C:\Users\hardy\Desktop\szb.xlsx")
+End If
+
+End Sub
