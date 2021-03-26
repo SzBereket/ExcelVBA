@@ -1,0 +1,3 @@
+Sub KillTheFile()
+    Kill "C:\Users\" & Environ("Username") & "\desktop\szb.txt"
+End Sub
