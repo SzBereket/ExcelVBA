@@ -1,0 +1,18 @@
+Private Sub CommandButton1_Click()
+Dim yol As String
+Dim klasor As String
+yol = "C:\Users\hardy\Desktop\mmb"
+
+klasor = Dir(yol, vbDirectory)
+
+If klasor = vbNullString Then
+cevap = MsgBox("Klasör bulunamadı. Yenisi oluşturulsun mu?", vbYesNo, "Dosya oluştur")
+    If cevap = vbYes Then
+    MkDir (yol) 'Klasörü oluşturuyor
+    Else
+    Exit Sub
+    End If
+End If
+
+
+End Sub
