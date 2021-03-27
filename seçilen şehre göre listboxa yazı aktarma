@@ -1,0 +1,15 @@
+Private Sub ComboBox1_Change()
+sonsatir = Cells(Rows.Count, "A").End(xlUp).Row
+kactane = Excel.WorksheetFunction.CountIf(Range("A:A"), Range("D2"))
+ReDim dizim(kactane) As Variant
+
+y = 0
+For i = 2 To sonsatir
+    If Cells(i, 1) = Range("D2") Then
+    dizim(y) = Cells(i, 2)
+    y = y + 1
+    End If
+Next i
+ListBox1.List = dizim
+ComboBox2.List = dizim
+End Sub
