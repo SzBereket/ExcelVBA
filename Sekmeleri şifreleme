@@ -1,0 +1,12 @@
+Sub a()
+sifre1 = InputBox("Şifrenizi Girin", "Şifre")
+sifre2 = InputBox("Şifrenizi Tekrarlayın", "Sifre")
+
+If sifre1 <> sifre2 Then Exit Sub
+
+Dim sekme As Worksheet
+For Each sekme In Worksheets
+sekme.Protect Password:=sifre1
+'sekme.Unprotect Password:=sifre1 (' kaldırırsan şifreyi kaldırmaya başlar)
+Next sekme
+End Sub
