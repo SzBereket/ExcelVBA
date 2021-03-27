@@ -1,0 +1,6 @@
+Private Sub CommandButton1_Click()
+sonsatir = Cells(Rows.Count, "A").End(xlUp).Row
+sonsutun = Cells(1, Columns.Count).End(xlToLeft).Column
+
+MsgBox sonsatir & vbNewLine & sonsutun
+End Sub
