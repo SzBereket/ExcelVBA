@@ -1,0 +1,25 @@
+Private Sub CommandButton1_Click()
+sonsatir = Cells(Rows.Count, "A").End(xlUp).Row
+Dim ie As New InternetExplorer
+ie.Visible = False
+Dim doc As HTMLDocument
+
+
+
+
+For i = 2 To sonsatir
+
+kripto = LCase(Range("A" & i))
+ie.navigate "https://tr.investing.com/crypto/" & kripto
+Do
+DoEvents
+Loop Until ie.readyState = READYSTATE_COMPLETE
+
+Set doc = ie.document
+fiyati = doc.getElementById("last_last").innerText
+
+ Range("B" & i) = fiyati
+
+Next i
+
+End Sub
