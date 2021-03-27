@@ -1,0 +1,16 @@
+Private Sub CommandButton1_Click()
+Range("C2:D100").Clear
+Dim ws As Worksheet
+Set ws = Sheets(1)
+tarih = Range("A2") 'sayfa 2 de a2 hücresinde yazan tarihi aldık 
+
+sonsatir = ws.Cells(Rows.Count, "A").End(xlUp).Row
+For i = 2 To sonsatir
+sonsatir2 = Cells(Rows.Count, "c").End(xlUp).Row + 1
+    If ws.Cells(i, 2) = tarih Then 'tarihle eşleşen tarih var ise sayfa2ye aldık 
+    Cells(sonsatir2, 3) = ws.Cells(i, 1)
+    Cells(sonsatir2, 4) = ws.Cells(i, 3)
+    End If
+Next i
+
+End Sub
