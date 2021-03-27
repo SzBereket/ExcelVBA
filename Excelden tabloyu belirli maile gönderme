@@ -1,0 +1,22 @@
+Private Sub CommandButton1_Click()
+Dim alan As Range
+If Range("B2") = "" Then Exit Sub
+saydir = Cells(Rows.Count, "D").End(xlUp).Row
+dinamikalan = "D2:" & "G" & saydir
+Set alan = Sheets(1).Range(dinamikalan)
+
+With alan
+.Select
+ActiveWorkbook.EnvelopeVisible = True
+    With .Parent.MailEnvelope
+        With .Item
+        .to = Range("B2")
+        .cc = Range("B3")
+        .Subject = Range("B1")
+        .bcc = "admin@bymmb.com"
+        .send
+        End With
+    End With
+End With
+
+End Sub
