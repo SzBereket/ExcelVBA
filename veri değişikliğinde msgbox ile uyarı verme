@@ -1,0 +1,10 @@
+Dim ilkdeger
+
+Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+ilkdeger = Target.Value
+End Sub
+
+Private Sub Worksheet_Change(ByVal Target As Range)
+eskideger = ilkdeger
+MsgBox eskideger & " değerini" & vbNewLine & Target.Value & " olarak değiştirdiniz."
+End Sub
