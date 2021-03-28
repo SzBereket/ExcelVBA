@@ -3,11 +3,34 @@ sonsatir = Cells(Rows.Count, "A").End(xlUp).Row
 Dim ie As New InternetExplorer
 ie.Visible = False
 Dim doc As HTMLDocument
+Dim alan As Range
+sonsatir2 = sonsatir + 1
+
+
+
+For y = 3 To 4
+birim = LCase(Cells(1, y))
+ie.navigate "https://tr.investing.com/currencies/" & birim
+Do
+DoEvents
+Loop Until ie.readyState = READYSTATE_COMPLETE
+
+Set doc = ie.document
+birimfiyat = doc.getElementById("last_last").innerText
+
+
+
+Cells(2, y).Value = CDbl(birimfiyat)
 
 
 
 
-For i = 2 To sonsatir
+Next y
+
+
+
+
+   For i = 11 To sonsatir
 
 kripto = LCase(Range("A" & i))
 ie.navigate "https://tr.investing.com/crypto/" & kripto
@@ -18,8 +41,74 @@ Loop Until ie.readyState = READYSTATE_COMPLETE
 Set doc = ie.document
 fiyati = doc.getElementById("last_last").innerText
 
- Range("B" & i) = fiyati
+Range("B" & i).Value = CCur(fiyati)
+Range("C" & i).Value = CDbl(Range("C2") * Range("B" & i)) & "TL"
+Range("C" & i).Select
+With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = False
+    End With
+   
+   Range("A10:C18").Select
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideVertical)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 65535
+        .TintAndShade = 0
+        .PatternTintAndShade = 0
+    End With
+    
+    
 
-Next i
+    Next i
+ie.Quit
 
 End Sub
+
+
+
