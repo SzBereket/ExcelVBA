@@ -7,7 +7,6 @@ Dim alan As Range
 sonsatir2 = sonsatir + 1
 
 
-
 For y = 3 To 4
 birim = LCase(Cells(1, y))
 ie.navigate "https://tr.investing.com/currencies/" & birim
@@ -31,6 +30,8 @@ Next y
 
 
    For i = 11 To sonsatir
+
+
 
 kripto = LCase(Range("A" & i))
 ie.navigate "https://tr.investing.com/crypto/" & kripto
@@ -56,7 +57,14 @@ With Selection
         .MergeCells = False
     End With
    
-   Range("A10:C18").Select
+
+    Next i
+    Dim partrange As String
+   partrange = "C" & sonsatir2
+   
+   
+   Range("A10:" & partrange).Select
+
     Selection.Borders(xlDiagonalDown).LineStyle = xlNone
     Selection.Borders(xlDiagonalUp).LineStyle = xlNone
     With Selection.Borders(xlEdgeLeft)
@@ -104,11 +112,6 @@ With Selection
     End With
     
     
-
-    Next i
 ie.Quit
 
 End Sub
-
-
-
