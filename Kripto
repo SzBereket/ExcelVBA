@@ -1,3 +1,4 @@
+
 Private Sub CommandButton1_Click()
 sonsatir = Cells(Rows.Count, "A").End(xlUp).Row
 Dim ie As New InternetExplorer
@@ -56,13 +57,13 @@ With Selection
         .ReadingOrder = xlContext
         .MergeCells = False
     End With
-   
+
 
     Next i
     Dim partrange As String
    partrange = "C" & sonsatir2
-   
-   
+
+
    Range("A10:" & partrange).Select
 
     Selection.Borders(xlDiagonalDown).LineStyle = xlNone
@@ -110,7 +111,19 @@ With Selection
         .TintAndShade = 0
         .PatternTintAndShade = 0
     End With
+    Range("d11") = Format(Now(), "dd mm yyyy")
+    Range("d12") = Format(Now(), "hh:mm:ss")
     
+    Dim rng As Range
+Dim cht As Object
+Dim partrange2 As String
+partrange2 = "B" & sonsatir
+
+ Range("A10:" & partrange2).Select
+ 
+    ActiveSheet.Shapes.AddChart2(201, xlColumnClustered).Select
+    ActiveChart.SetSourceData Source:=Range("Sayfa1!$A$10:$B$17")
+
     
 ie.Quit
 
