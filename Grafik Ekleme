@@ -1,0 +1,14 @@
+Sub a()
+Dim rng As Range
+Dim cht As Object
+Set rng = Range("B2:D6")
+Set cht = Shapes.AddChart2
+cht.Chart.SetSourceData Source:=rng
+cht.Chart.ChartType = xlBubble
+cht.Chart.ChartGroups(1).BubbleScale = 10
+
+
+
+
+
+End Sub
