@@ -1,0 +1,37 @@
+Private Sub CommandButton1_Click()
+Dim outapp As Outlook.Application
+Dim outmail As Outlook.MailItem
+
+'referanstan outlook seçmeyi unutma
+
+For i = 4 To 13
+Range("O6") = Sheets("Sayfa1").Cells(i, 1)
+Set outapp = New Outlook.Application
+With ActiveSheet.PageSetup
+.PrintArea = "$D$8:$E$9"
+.FitToPagesWide = 1
+.Orientation = xlLandscape
+
+End With
+
+gecicipath = ThisWorkbook.Path & "\"
+pdffile = gecicipath & Range("D9") & ".pdf"
+Set alan = Range(ActiveSheet.PageSetup.PrintArea)
+alan.ExportAsFixedFormat Type:=xlTypePDF, Filename:=pdffile, openafterpublish:=False
+Set outmail = outapp.CreateItem(olMailItem)
+With outmail
+.To = Range("I10")
+.Subject = "Nerede yaşıyorsun"
+
+.Body = "Sayın" & Range("D9") & vbCrLf & "Nerede yaşadığınız ektedir."
+.Attachments.Add pdffile
+.Send
+
+End With
+Set outmail = Nothing
+Set outapp = Nothing
+Kill pdffile
+
+Next i
+
+End Sub
