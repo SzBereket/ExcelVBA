@@ -1,0 +1,78 @@
+Private Sub CommandButton1_Click()
+Dim wb As Workbook
+    Dim sh As Worksheet
+    
+    Set wb = ActiveWorkbook
+    Set sh = wb.Sheets("Sayfa1") 'tablo eklemeyi unutma
+    
+    
+    Dim isim, soyisim, babaisim As String
+    isim = TextBox1.Text
+    soyisim = TextBox2.Text
+    babaisim = TextBox3.Text
+   If (babaisim = vbNullString And isim = vbNullString And soyisim = vbNullString) Then
+    MsgBox ("değerleri giriniz")
+    Exit Sub
+    
+    End If
+    If (isim <> vbNullString And soyisim <> vbNullString And babaisim <> vbNullString) Then
+    
+    sh.ListObjects(1).Range.AutoFilter 2, isim 'sütun numarasını düzeltmeyi unutma
+    sh.ListObjects(1).Range.AutoFilter 3, soyisim
+    sh.ListObjects(1).Range.AutoFilter 7, babaisim
+    Exit Sub
+    End If
+     If (babaisim = vbNullString And soyisim = vbNullString) Then
+    sh.ListObjects(1).Range.AutoFilter 2, isim
+    Exit Sub
+    End If
+    If (isim = vbNullString And babaisim = vbNullString) Then
+    sh.ListObjects(1).Range.AutoFilter 3, soyisim
+    Exit Sub
+    End If
+    If (isim = vbNullString And soyisim = vbNullString) Then
+    sh.ListObjects(1).Range.AutoFilter 7, babaisim
+    Exit Sub
+    End If
+    
+    If (isim = vbNullString) Then
+    sh.ListObjects(1).Range.AutoFilter 3, soyisim
+    sh.ListObjects(1).Range.AutoFilter 7, babaisim
+    Exit Sub
+    End If
+    If (soyisim = vbNullString) Then
+    sh.ListObjects(1).Range.AutoFilter 2, isim
+    sh.ListObjects(1).Range.AutoFilter 7, babaisim
+    Exit Sub
+    End If
+    If (babaisim = vbNullString) Then
+    sh.ListObjects(1).Range.AutoFilter 2, isim
+    sh.ListObjects(1).Range.AutoFilter 3, soyisim
+    Exit Sub
+    End If
+    If (babaisim = vbNullString And soyisim = vbNullString) Then
+    sh.ListObjects(1).Range.AutoFilter 2, isim
+    Exit Sub
+    End If
+    If (isim = vbNullString And babaisim = vbNullString) Then
+    sh.ListObjects(1).Range.AutoFilter 3, soyisim
+    Exit Sub
+    End If
+    If (isim = vbNullString And soyisim = vbNullString) Then
+    sh.ListObjects(1).Range.AutoFilter 7, babaisim
+    
+    End If
+    
+    
+    
+    
+    
+End Sub
+
+Private Sub CommandButton2_Click()
+Dim wb As Workbook
+    Dim sh As Worksheet
+Set wb = ActiveWorkbook
+    Set sh = wb.Sheets("Sayfa1")
+sh.ListObjects(1).Range.AutoFilter
+End Sub
