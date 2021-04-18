@@ -1,0 +1,85 @@
+Private Sub CommandButton1_Click()
+sonsatir = Cells(Rows.Count, "B").End(xlUp).Row
+Dim ie As New InternetExplorer    'internet controler ,html,xml referansını ekle
+ie.Visible = False
+Dim doc As HTMLDocument
+Dim alan As Range
+sonsatir2 = sonsatir + 1
+
+For y = 11 To sonsatir
+
+If Range("C" & y) = "This problem has been solved!" Then
+Range("D" & y) = "Bu soru zaten çözülmüştü"
+
+Else
+Range("D" & y) = "Çözülmemişti"
+
+End If
+
+Next y
+
+
+
+
+   For i = 11 To sonsatir
+
+
+sorusayisi = i - 10
+
+If Range("C" & i) = "This problem has been solved!" Then
+  
+  Else
+Dim surl As String
+surl = Range("B" & i)
+Dim getHTML As String
+    With CreateObject("MSXML2.XMLHTTP")
+        .Open "GET", surl, False
+        .send
+        getHTML = .responseText
+    End With
+    
+    For Each ele In Split(getHTML, ",")
+        methodInt = InStr(1, ele, "pageNameDetailed", vbTextCompare)
+        If methodInt > 0 Then
+            tKey = Split(ele, """")(3)
+            Range("E" & i).Value = tKey
+        End If
+    Next ele
+  
+ie.navigate Range("B" & i)
+Do
+DoEvents
+Loop Until ie.readyState = READYSTATE_COMPLETE
+
+Set doc = ie.document
+
+durum = doc.getElementsByClassName("CTAHeading-sc-1dvtckw-0 eRNZtV")().innerText
+Range("C" & i).Value = (durum)
+
+If Range("C" & i) = "This problem has been solved!" Then
+Range("C" & i).Select
+With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .ThemeColor = xlThemeColorAccent6
+        .TintAndShade = 0.599993896298105
+        .PatternTintAndShade = 0
+    End With
+Else
+    Range("C" & i).Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .ThemeColor = xlThemeColorAccent2
+        .TintAndShade = 0.399975585192419
+        .PatternTintAndShade = 0
+    End With
+    
+    
+End If
+End If
+Next i
+    
+    
+ie.Quit
+End Sub
