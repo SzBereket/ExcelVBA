@@ -1,0 +1,19 @@
+Sub primenumber()
+For i = 1 To 13
+
+For x = 2 To Range("A" & i) - 1
+If Range("A" & i) Mod x = 0 Then
+Range("B" & i) = "Asal değil "
+
+Exit For
+Else
+Range("B" & i) = "Asal "
+End If
+
+Next x
+
+
+
+Next i
+
+End Sub
